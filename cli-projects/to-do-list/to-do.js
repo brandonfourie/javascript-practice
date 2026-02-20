@@ -56,11 +56,26 @@ function askName() {
     if (cmd.toLowerCase() === "c"){
       rl.question("Enter your To Do list task: ", (task) => {
         toDo[task] = 'incomplete'; 
-        console.log(toDo);
+          
+        let idx = 1;
+        let taskStatus = "";
+        
+        if (Object.entries(toDo).length !== 0){
+          for (const task in toDo){
+            if (toDo[task] === 'incomplete'){
+              taskStatus = '[ ]';
+            }
+            else{
+              taskStatus = '[ X ]';
+            }
+            console.log(`${idx}. ${taskStatus} ${task}`);
+            idx += 1;
+          }
+        }
         askName();
-      });
-      return;
-    }
+        return;
+        });
+      }
 
     // Read
     else if (cmd.toLowerCase() === "r"){
