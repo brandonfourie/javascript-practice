@@ -1,6 +1,6 @@
 ## CLI To-Do List
 
-At first glance, a CLI To-Do List seemed like a bad recommendation as a beginner vanilla javascript project. 
+At first, a CLI To-Do List seemed like a bad recommendation as a beginner vanilla javascript project. 
 However, after researching about python input() equivalents to JavaScript, I came across synchronous vs 
 asynchronous operations (asynchronous means javascript does not wait for the user to type). In my head 
 synchronous makes sense for a CLI because you are provided with the option to enter a command, the system 
