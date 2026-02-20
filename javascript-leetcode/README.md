@@ -1,1 +1,0 @@
-## JavaScript Leetcode README
