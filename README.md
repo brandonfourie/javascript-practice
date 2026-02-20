@@ -8,6 +8,6 @@ A structured collection of my JavaScript projects and coding challenges.
 
 ## Command Line Interface Projects:
 
-- To-Do List
+- [To-Do List](cli-projects/to-do-list)
 
 
