@@ -72,10 +72,12 @@ function askName() {
             idx += 1;
           }
         }
-        askName();
-        return;
-        });
-      }
+      
+      askName();
+      return;
+      });
+      return;
+    }
 
     // Read
     else if (cmd.toLowerCase() === "r"){
@@ -164,6 +166,11 @@ function askName() {
           console.log(`${idx}. ${taskStatus} ${task}`);
           idx += 1;
         }
+      }
+      else{
+        console.log("You have no active Tasks.");
+        askName();
+        return;
       }
 
       rl.question("\nEnter the index of the task to delete: ", (idxStatus) => {
