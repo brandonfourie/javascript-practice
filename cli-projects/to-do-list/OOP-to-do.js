@@ -28,19 +28,38 @@ Enter 'exit' to terminate the program\n
         return Object.entries(this.toDo).length; 
     }
 
-    // Setters
+    // Helper functions 
 
+    // State Manager
+    // stateManager(cmd){
+    //     if (cmd.toLowerCase() == "c"){
+
+    //     }
+    //     else if (cmd.toLowerCase() == "r"){
+            
+    //     }
+    //     else if (cmd.toLowerCase() == "u"){
+            
+    //     }
+    //     else if (cmd.toLowerCase() == "d"){
+            
+    //     }
+
+    // }
+
+    // Create task method
     createTask(){
         this.rl.question(">>> Enter the task you want to add: ", (task) => {
             this.toDo[task] = "incomplete";
+            console.log(`Task: '${task}' successfully added`)
             if (task){
                 this.readTask();
             }
         })
     }
 
-    // Display tasks method
-    readTask(){
+    // Read (Display) task method
+    readTask(clean = ""){
         if (this.toDoLength !== 0){
             let idx = 1;
             let taskStatus = '';
@@ -58,7 +77,9 @@ Enter 'exit' to terminate the program\n
                 idx += 1;
             }
             console.log("\n--------------------------------------\n");
-            this.commandControl();
+            if (clean === ""){
+                this.commandControl();
+            }
         } 
         else {
             console.log("\n--------------------------------------\n");
@@ -70,7 +91,7 @@ Enter 'exit' to terminate the program\n
 
     updateTask(){
         if (this.toDoLength !== 0){
-            this.readTask()
+            this.readTask("clean")
             console.log("\n-------------------------------------------------------------\n");
             this.rl.question("Enter the index of the task you want to update the status for: \n", (taskIndex) => {
                 console.log("\n-------------------------------------------------------------\n");
