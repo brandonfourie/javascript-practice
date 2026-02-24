@@ -1,51 +1,31 @@
-## CLI To-Do List
+# CLI To-Do List
 
-At first, a CLI To-Do List seemed like a bad recommendation as a beginner vanilla javascript project. 
-However, after researching about python input() equivalents to JavaScript, I came across synchronous vs 
-asynchronous operations (asynchronous means javascript does not wait for the user to type). In my head 
-synchronous makes sense for a CLI because you are provided with the option to enter a command, the system 
-then performs an operation based on the user input and the process repeats. This process does not seem like 
-it would make sense in an asynchronous environment. 
+<hr>
 
-The following showcases the difference between python and javascript:
+## How to run this program: 
 
-Python: 
+1. git clone https://github.com/brandonfourie/javascript-practice
+2. cd javascript-practice/cli-projects/to-do-list
+3. npm start 
 
-```
-while True:
-    user_input = input("Enter a command or enter 'q' to quit: ") #Program stops here until input is provided 
-    if user_input.lower() == 'q':
-        break
-    print(f"Your input: {user_input}")
-```
+## Requirements:
+- Node.js
 
-JavaScript:
+## What is this project?
 
-Think of it as the entire code block continuously running therefore we do not need to declare a while loop
+This is a command line interface that showcases Object Oriented programming concepts 
+together with JavaScript fundamentals to create a To Do List Tracker. 
 
-```
-const readline = require("readline");
+## How the program works: 
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+After running npm start, the user will be prompted to enter a command. User input is used 
+to execute methods from the MyToDo class. 
 
-function askName() {
-  rl.question("Enter your name (or type exit): ", (answer) => {
+These commands include: 
+- 'exit' : Terminates the program 
+- 'help' : Displays a list of available commands
+- 'c' : Creates a new task
+- 'r' : Displays all active tasks
+- 'u' : Updates the status of a task 
+- 'd' : Deletes a task 
 
-    if (answer.toLowerCase() === "exit") {
-      console.log("Goodbye!");
-      rl.close();
-      return;
-    }
-
-    console.log(`Hello, ${answer}`);
-
-    // Ask again
-    askName();
-  });
-}
-
-askName();
-```

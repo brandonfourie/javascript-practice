@@ -1,8 +1,7 @@
-// This file is an updated version of the To-Do List CLI project that incorporates 
-// important concepts from Object Oriented Programming. 
+
 
 class MyToDo{
-    // constructor intializes this scope's requirements upon class instance 
+    // Sets up readline interface and initializes app state
     constructor(){
         const readline = require("readline");
         const rl = readline.createInterface({
@@ -28,13 +27,13 @@ Enter 'exit' to terminate the program\n
         return Object.entries(this.toDo).length; 
     }
 
-    // Exit program 
+
     toDoExit(){
         console.log("Goodbye!");
         this.rl.close();
     }
 
-    // 'help' Command List 
+    // Displays a list of valid commands 
     toDoHelp(){
         console.log("--------------------\n");
         console.log("To Do List Commands");
@@ -43,9 +42,10 @@ Enter 'exit' to terminate the program\n
         this.commandControl();
     }
 
-    // Create task method
+
     createTask(){
         this.rl.question(">>> Enter the task you want to add: ", (task) => {
+            // prevents duplicate tasks 
             if (task.toLowerCase().trim() in this.toDo){
                 console.log(`'${task}' already exists`);
                 this.commandControl();
@@ -59,14 +59,15 @@ Enter 'exit' to terminate the program\n
         })
     }
 
-    // Read (Display) task method
     readTask(clean = ""){
+    // parameter allows read task to display active tasks without recursive command control call
         if (this.toDoLength !== 0){
             let idx = 1;
             let taskStatus = '';
             console.log("\n--------------------------------------\n");
             console.log(`              To-Do List                \n`);
             console.log("--------------------------------------\n");
+            // task formatting 
             for (const task in this.toDo){
                 if (this.toDo[task] === "incomplete"){
                     taskStatus = "[ ]";
@@ -205,16 +206,3 @@ Enter 'exit' to terminate the program\n
 const test = new MyToDo();
 test.commandControl();
 
-
-/* 
-
-What I learnt from this project: 
-
-- The value and importance of getters and setters and that they are not functions, 
-  you do not call them as a function 
-
-- how constructors work and how they are used to initialize and keep track of instances 
-
-- 'this'
-
-*/
