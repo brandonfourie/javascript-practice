@@ -1,7 +1,7 @@
 // This file is an updated version of the To-Do List CLI project that incorporates 
 // important concepts from Object Oriented Programming. 
 
-class myToDo{
+class MyToDo{
     // constructor intializes this scope's requirements upon class instance 
     constructor(){
         const readline = require("readline");
@@ -28,29 +28,30 @@ Enter 'exit' to terminate the program\n
         return Object.entries(this.toDo).length; 
     }
 
-    // Helper functions 
+    // Exit program 
+    toDoExit(){
+        console.log("Goodbye!");
+        this.rl.close();
+    }
 
-    // State Manager
-    // stateManager(cmd){
-    //     if (cmd.toLowerCase() == "c"){
-
-    //     }
-    //     else if (cmd.toLowerCase() == "r"){
-            
-    //     }
-    //     else if (cmd.toLowerCase() == "u"){
-            
-    //     }
-    //     else if (cmd.toLowerCase() == "d"){
-            
-    //     }
-
-    // }
+    // 'help' Command List 
+    toDoHelp(){
+        console.log("--------------------\n");
+        console.log("To Do List Commands");
+        console.log("\n--------------------\n");
+        console.log("'exit' : Terminate program\n 'c' : Create a new task\n 'r' : Display active Tasks\n 'u' : Update task status\n 'd' : Delete a task\n");
+        this.commandControl();
+    }
 
     // Create task method
     createTask(){
         this.rl.question(">>> Enter the task you want to add: ", (task) => {
-            this.toDo[task] = "incomplete";
+            if (task.toLowerCase().trim() in this.toDo){
+                console.log(`'${task}' already exists`);
+                this.commandControl();
+                return
+            }
+            this.toDo[task.toLowerCase().trim()] = "incomplete";
             console.log(`Task: '${task}' successfully added`)
             if (task){
                 this.readTask();
@@ -95,14 +96,20 @@ Enter 'exit' to terminate the program\n
             console.log("\n-------------------------------------------------------------\n");
             this.rl.question("Enter the index of the task you want to update the status for: \n", (taskIndex) => {
                 console.log("\n-------------------------------------------------------------\n");
+                if (taskIndex.toLowerCase().trim() === "exit"){
+                    console.log("exit");
+                    this.toDoExit();
+                    return;
+                }
                 let idx = 1;
                 for (const task in this.toDo){
-                    if (taskIndex === String(idx)){
+                    if (taskIndex.trim() === String(idx)){
                         this.toDo[task] = "complete";
                         console.log(`${taskIndex}. ${task} Successfully updated`)
                         this.readTask();
                         return
                     }
+                    idx += 1;
                 }
                 console.log("Index is either invalid or out of range");
                 this.updateTask();
@@ -116,6 +123,29 @@ Enter 'exit' to terminate the program\n
 
     deleteTask(){
         if (this.toDoLength !== 0){
+            this.readTask("clean")
+            console.log("\n---------------------------------------------------\n");
+            this.rl.question("Enter the index of the task you want to delete: \n", (taskIndex) => {
+                console.log("\n---------------------------------------------------\n");
+                if (taskIndex.toLowerCase().trim() === "exit"){
+                    console.log("exit");
+                    this.toDoExit();
+                    return;
+                }
+                let idx = 1;
+                for (const task in this.toDo){
+                    if (taskIndex.trim() === String(idx)){
+                        delete this.toDo[task];
+                        console.log(`${taskIndex}. ${task} Successfully deleted`)
+                        this.readTask();
+                        return
+                    }
+                    idx += 1;
+                }
+                console.log("Index is either invalid or out of range");
+                this.deleteTask();
+                return;
+            });
             
         }
         else {
@@ -126,6 +156,7 @@ Enter 'exit' to terminate the program\n
     // Main control 
     commandControl(){
 
+        // One time welcome message
         if (this.welcome === false){
             console.log(this.welcomeMessage)
             this.welcome = true;
@@ -135,26 +166,35 @@ Enter 'exit' to terminate the program\n
             (cmd) => {
 
                 // command operations 
-                if (cmd.toLowerCase() === "exit"){
-                    console.log("Goodbye!");
-                    this.rl.close();
-                    exit();
+                if (cmd.toLowerCase().trim() === "exit"){
+                    this.toDoExit();
                 }
 
-                else if (cmd.toLowerCase() === "c"){
+                else if (cmd.toLowerCase().trim() === "help"){
+                    this.toDoHelp();
+                }
+
+                else if (cmd.toLowerCase().trim() === "c"){
                     this.createTask();
                 }
 
-                else if (cmd.toLowerCase() === "r"){
+                else if (cmd.toLowerCase().trim() === "r"){
                     this.readTask();
                 }
 
-                else if (cmd.toLowerCase() === "u"){
+                else if (cmd.toLowerCase().trim() === "u"){
                     this.updateTask();
                 }
 
-                else if (cmd.toLowerCase() === "d"){
+                else if (cmd.toLowerCase().trim() === "d"){
+                    this.deleteTask();
+                }
 
+                // Invalid commands handler
+                else{
+                    console.log(`'${cmd}' is an unknown command\n`);
+                    this.toDoHelp();
+                    this.commandControl();
                 }
             }
         )
