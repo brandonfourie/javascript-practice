@@ -59,8 +59,8 @@ Enter 'exit' to terminate the program\n
         })
     }
 
-    readTask(clean = ""){
     // parameter allows read task to display active tasks without recursive command control call
+    readTask(clean = false){
         if (this.toDoLength !== 0){
             let idx = 1;
             let taskStatus = '';
@@ -79,7 +79,7 @@ Enter 'exit' to terminate the program\n
                 idx += 1;
             }
             console.log("\n--------------------------------------\n");
-            if (clean === ""){
+            if (clean === false){
                 this.commandControl();
             }
         } 
@@ -93,7 +93,7 @@ Enter 'exit' to terminate the program\n
 
     updateTask(){
         if (this.toDoLength !== 0){
-            this.readTask("clean")
+            this.readTask(clean = true)
             console.log("\n-------------------------------------------------------------\n");
             this.rl.question("Enter the index of the task you want to update the status for: \n", (taskIndex) => {
                 console.log("\n-------------------------------------------------------------\n");
@@ -124,7 +124,7 @@ Enter 'exit' to terminate the program\n
 
     deleteTask(){
         if (this.toDoLength !== 0){
-            this.readTask("clean")
+            this.readTask(clean = true)
             console.log("\n---------------------------------------------------\n");
             this.rl.question("Enter the index of the task you want to delete: \n", (taskIndex) => {
                 console.log("\n---------------------------------------------------\n");
