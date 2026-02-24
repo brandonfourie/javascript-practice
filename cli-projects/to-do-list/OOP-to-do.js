@@ -202,7 +202,7 @@ Enter 'exit' to terminate the program\n
 
 }
 
-const test = new myToDo();
+const test = new MyToDo();
 test.commandControl();
 
 
