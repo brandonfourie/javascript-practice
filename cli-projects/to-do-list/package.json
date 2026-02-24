@@ -1,0 +1,11 @@
+{
+    "name": "todo-cli",
+    "version": "1.0.0",
+    "main": "OOP-to-do.js",
+    "type": "commonjs",
+    "scripts": {
+      "start": "node OOP-to-do.js"
+    },
+    "description" : "A command-line to-do list app built with Node.js",
+    "author" : "Brandon Fourie"
+  }
