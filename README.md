@@ -32,5 +32,5 @@ A structured collection of my JavaScript projects and coding challenges.
 
 ### Leetcode: 
 
-- [twoSum.js](coding-challenges/leetcode/twoSum.js)
+- [twoSum.js](coding-challenges/leetcode/twosum.js)
 
