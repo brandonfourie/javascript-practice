@@ -20,8 +20,17 @@ A structured collection of my JavaScript projects and coding challenges.
 [perf]     – Performance improvement\
 [build]    – Build / scripts changes
 
+<hr>
+
 ## Command Line Interface Projects:
 
 - [To-Do List](cli-projects/to-do-list)
 
+<hr>
+
+## Coding Challenges: 
+
+### Leetcode: 
+
+- [twoSum.js](coding-challenges/leetcode/twoSum.js)
 
